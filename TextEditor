@@ -1,0 +1,86 @@
+/*
+In this Program, simple text editor is implemented. Initially, editor contains an empty string, . we perform  operations of the following  
+types:
+
+1.append - Append string  to the end of .
+2.delete - Delete the last  characters of .
+3.print - Print the  character of .
+4.undo - Undo the last (not previously undone) operation of type  or , reverting  to the state it was in prior to that operation.
+
+Input Format:
+4                               // number of operation
+1 abc                           //append operation
+3 3                             // Print Operation
+2 2                             //delete oepration
+4                               // Undo Operation
+
+First line contains the number of operations(which are listed above). followed by actual command numbers. we need to perform the tasks.
+*/
+
+import java.io.*;
+import java.util.*;
+
+class Node{
+    String data;
+    Node next;
+}
+
+public class Solution {
+
+    public static void main(String[] args) {
+        /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
+        Scanner sc=new Scanner(System.in);
+        String s=new String();
+        s="";
+        int number = sc.nextInt();
+        int choice;
+        Node head=new Node();
+        head.data=s;
+        head.next=null;
+        while(number>=1)
+        {
+            number--;
+            choice=sc.nextInt();
+            switch(choice)
+            {
+                case 1:
+                    String temp=sc.next();
+                    s=s+temp; 
+                    Node p=new Node();
+                    p.data=s;
+                    p.next=head;
+                    head=p;
+                   
+                    break;
+                case 2:
+                    int k=sc.nextInt();
+                    s=s.substring(0, s.length() - k);                
+                    Node q=new Node();
+                    q.data=s;
+                    q.next=head;
+                    head=q;
+                    break;
+                case 3:
+                
+                   int l=sc.nextInt();
+                    char[] ch1=s.toCharArray();
+                 
+                    for(int i=1;i<=ch1.length;i++)
+                    {
+                        if(i==l)
+                        {
+                            System.out.println(ch1[i-1]);
+                        }
+                    }
+                 
+                    break;
+                case 4:
+                    head=head.next;
+                    s=head.data;
+                    
+                    break;
+                    
+            }
+        }
+    }
+}
