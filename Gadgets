@@ -1,0 +1,55 @@
+/* Problem :https://www.hackerrank.com/challenges/electronics-shop
+Java 8
+Initial solution:
+we can keep a track of Max variable initializing it to -1.
+Now take each each element of keyobard and calculate the sum for the each of the drives. This solution will lead to O(n^2).
+Other solution is to keep keyboard descending and drives ascending. This solution will lead to O(n log n)
+*/
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+import java.util.Arrays;
+
+public class Solution {
+
+    static int getMoneySpent(Integer[] keyboards, int[] drives, int s){
+        // Complete this function
+       // Arrays.sort(keyboards);//Descending order
+        Arrays.sort(keyboards, Collections.reverseOrder());       
+        Arrays.sort(drives);//Ascending order
+        int i,j;
+        int max=-1;
+        for(i=0,j=0;i<keyboards.length;i++)
+        {
+            for(;j<drives.length;j++)
+            {
+                if(keyboards[i]+drives[j]>s) 
+                    break;
+                if(keyboards[i]+drives[j]>max)
+                    max=keyboards[i]+drives[j];
+            }
+        }
+        return max;
+        
+    }
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int s = in.nextInt();
+        int n = in.nextInt();
+        int m = in.nextInt();
+        Integer[] keyboards = new Integer[n];
+        for(int keyboards_i=0; keyboards_i < n; keyboards_i++){
+            keyboards[keyboards_i] = in.nextInt();
+        }
+        int[] drives = new int[m];
+        for(int drives_i=0; drives_i < m; drives_i++){
+            drives[drives_i] = in.nextInt();
+        }
+        //  The maximum amount of money she can spend on a keyboard and USB drive, or -1 if she can't purchase both items
+        int moneySpent = getMoneySpent(keyboards, drives, s);
+        System.out.println(moneySpent);
+    }
+}
