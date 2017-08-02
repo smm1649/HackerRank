@@ -1,0 +1,46 @@
+\* Problem : https://www.hackerrank.com/challenges/cats-and-a-mouse
+
+Approach : Scan through the contents of the arrays and print the appropriate value. Very straight forward question, can be done in O(n)
+
+*/
+package Algo_Implementation;
+import java.util.Scanner;
+
+public class CatandMouse {
+	
+	public static void main(String args[])
+	{
+		int[] a=new int[100];
+		int[] b=new int[100];
+		int[] c=new int[100];
+		@SuppressWarnings("resource")
+		Scanner sc=new Scanner(System.in);
+		int q=sc.nextInt();
+		for(int i=0;i<q;i++)
+		{
+			int x = sc.nextInt();
+            int y = sc.nextInt();
+            int z = sc.nextInt();
+		   a[i]=x;
+		   b[i]=y;
+		   c[i]=z;
+			
+			
+		}
+		for(int i=0;i<q;i++)
+		{
+			int diff1=a[i]-c[i];
+			int diff2=b[i]-c[i];
+			
+			if( Math.abs(diff1) > Math.abs(diff2) )
+			{
+				System.out.println("Cat B");
+			}
+			else if(Math.abs(diff1) < Math.abs(diff2))
+				System.out.println("Cat A");
+			else
+				System.out.println("Mouse C");
+		}
+	}
+
+}
